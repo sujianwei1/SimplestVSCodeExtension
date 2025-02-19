@@ -1,0 +1,67 @@
+{
+  "name": "file-helper",
+  "displayName": "File Helper",
+  "description": "文件处理助手",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "fileHelper.printFileName",
+        "title": "打印文件名"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "fileHelper.printFileName",
+          "when": "resourceScheme == 'file'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "File Helper",
+      "properties": {
+        "fileHelper.enableFileNamePrinting": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否启用文件名打印功能"
+        },
+        "fileHelper.fileNamePattern": {
+          "type": "string",
+          "default": "*",
+          "description": "文件名匹配模式"
+        },
+        "fileHelper.showFullPath": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否显示完整文件路径"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node ./out/test/runTest.js",
+    "clean": "rimraf out"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37",
+    "@types/vscode": "^1.75.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "file-helper": "file:"
+  }
+}
